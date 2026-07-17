@@ -1,0 +1,136 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#2563eb,#1e3a8a);
+}
+
+.main{
+    width:420px;
+    height:580px;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    background:#fff;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+#toggleAuth{
+    display:none;
+}
+
+.signupBox,
+.loginBox{
+    position:absolute;
+    width:100%;
+    height:100%;
+    transition:.7s ease-in-out;
+    padding:45px 35px;
+}
+
+.signupBox{
+    top:0;
+}
+
+.loginBox{
+    top:100%;
+    background:#f8fafc;
+    border-radius:20% 20% 0 0;
+}
+
+#toggleAuth:checked~.signupBox{
+    transform:translateY(-100%);
+}
+
+#toggleAuth:checked~.loginBox{
+    top:0;
+}
+
+.mainheading{
+    text-align:center;
+    color:#1e293b;
+    margin-bottom:10px;
+    font-size:30px;
+}
+
+.switch{
+    text-align:center;
+    color:#64748b;
+    margin-bottom:30px;
+}
+
+.switch label{
+    color:#2563eb;
+    cursor:pointer;
+    font-weight:600;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    margin-bottom:18px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    font-size:15px;
+    transition:.3s;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 8px rgba(37,99,235,.3);
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    margin-top:10px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button[type="submit"]{
+    background:#2563eb;
+    color:white;
+}
+
+button[type="submit"]:hover{
+    background:#1d4ed8;
+}
+
+.google-btn{
+    background:white;
+    border:1px solid #ddd;
+    color:#333;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+.google-btn:hover{
+    background:#f1f5f9;
+}
+
+.google-btn img{
+    width:20px;
+}
+
+@media(max-width:480px){
+
+.main{
+    width:95%;
+}
+
+}

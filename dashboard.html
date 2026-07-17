@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lost & Found Dashboard</title>
+
+<link rel="stylesheet" href="css/dashboard.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Lost & Found Dashboard</h1>
+
+<button id="logoutBtn">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</button>
+
+</div>
+
+<!-- Toggle -->
+
+<div class="toggle">
+
+<button id="lostBtn" class="active">
+Lost Item
+</button>
+
+<button id="foundBtn">
+Found Item
+</button>
+
+</div>
+
+<!-- Lost -->
+
+<div id="lostSection" class="formCard">
+
+<h2>Add Lost Item</h2>
+
+<form id="lostForm">
+
+<input
+type="text"
+id="lostItem"
+placeholder="Item Name"
+required>
+
+<input
+type="file"
+id="lostImage"
+accept="image/*"
+required>
+
+<img id="lostPreview">
+
+<button type="submit">
+Save Lost Item
+</button>
+
+</form>
+
+</div>
+
+<!-- Found -->
+
+<div id="foundSection" class="formCard hide">
+
+<h2>Add Found Item</h2>
+
+<form id="foundForm">
+
+<input
+type="text"
+id="foundItem"
+placeholder="Item Name"
+required>
+
+<input
+type="file"
+id="foundImage"
+accept="image/*"
+required>
+
+<img id="foundPreview">
+
+<button type="submit">
+Save Found Item
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<script type="module" src="js/dashboard.js"></script>
+
+</body>
+</html>

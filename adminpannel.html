@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet" href="css/admin.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <h2>Lost & Found</h2>
+
+    <ul>
+
+        <li class="active">
+            <i class="fas fa-home"></i>
+            Dashboard
+        </li>
+
+        <li onclick="location.href='panel.html'">
+            <i class="fas fa-box"></i>
+            Manage Items
+        </li>
+
+        <li>
+            <i class="fas fa-users"></i>
+            Users
+        </li>
+
+        <li onclick="logout()">
+            <i class="fas fa-right-from-bracket"></i>
+            Logout
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+    <header>
+
+        <h1>Dashboard</h1>
+
+        <div class="profile">
+            <i class="fas fa-user-circle"></i>
+            <span id="username">Admin</span>
+        </div>
+
+    </header>
+
+    <!-- Cards -->
+
+    <div class="cards">
+
+        <div class="card">
+
+            <i class="fas fa-circle-exclamation"></i>
+
+            <h2 id="lostCount">0</h2>
+
+            <p>Lost Items</p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fas fa-check-circle"></i>
+
+            <h2 id="foundCount">0</h2>
+
+            <p>Found Items</p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fas fa-users"></i>
+
+            <h2 id="userCount">0</h2>
+
+            <p>Users</p>
+
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="actions">
+
+        <button onclick="location.href='panel.html'">
+            + Add Lost Item
+        </button>
+
+        <button onclick="location.href='panel.html'">
+            + Add Found Item
+        </button>
+
+    </div>
+
+</div>
+
+<script type="module" src="js/admin.js"></script>
+
+</body>
+</html>

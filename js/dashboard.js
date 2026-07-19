@@ -5,8 +5,78 @@ const publishable_key = "sb_publishable_H5eTy5PSQUb-mhrlEDZ4vw_YIR6TsSi"
 
 const supabase = createClient(supabase_url, publishable_key)
 
+let userID;
+let username;
+let role;
+let email;
 
 
+
+async function user() {
+    try {
+        const { data: { user },error } = await supabase.auth.getUser()
+
+
+
+    // console.log(user.email);
+    email=user.email
+    userID = user.id;
+    username= user.user_metadata.first_name;
+    role=user.user_metadata.role
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+user()
+
+async function item(){
+try {
+    const { data, error } = await supabase
+    .from('lost table')
+    .select("*")
+if (error) {
+  console.error(error)
+  return
+}
+} catch (error) {
+    console.log(error)
+}
+}
+item()
+
+async function  getLostItems() {
+    try {
+        const { data, error } = await supabase
+    .from("lost table")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  lostItems(data);
+    } catch (error) {
+        error
+    }
+}
+
+
+async function lostItems(items) {
+    const container = document.getElementById("lostItems")
+    container.innerHTML=""
+
+    items.forEach((item) => {
+        container.innerHTML +=`
+        <div class="card p-3 mb-3">
+        <img src="${item.image}" width="200">
+        <h4>${item.item}</h4>
+      </div>
+        `
+    });
+}
 // Toggle
 
 const lostBtn=document.getElementById("lostBtn");
@@ -66,43 +136,21 @@ document.getElementById("foundPreview")
 
 // Upload Image
 
-// async function upload(file){
+async function upload(file){
 
-// const name=Date.now()+"-"+file.name;
+const name=Date.now()+"-"+file.name;
 
-// await supabase.storage
-// .from("images")
-// .upload(name,file);
-
-// const {data}=supabase.storage
-// .from("images")
-// .getPublicUrl(name);
-
-// return data.publicUrl;
-
-// }
-let imgUrl = "";
-
-if (imageUploader) {
-    let fileName = `${Date.now()}-${imageUploader.name}`;
-
-    const { error: uploadError } = await supabase.storage
-        .from("image-bucket")
-        .upload(item, image);
+await supabase.storage
+.from("image")
+.upload(name,file);
 
 
-    if (uploadError) {
-        alert("Image upload failed")
-        console.log(uploadError);
-   
-    }
+const {data}=supabase.storage
+.from("image")
+.getPublicUrl(name);
 
-    const { data:imageData } = supabase
-        .storage
-        .from("image-bucket")
-        .getPublicUrl(fileName);
+return data.publicUrl;
 
-    imgUrl = imageData.publicUrl;
 }
 
 
@@ -116,21 +164,29 @@ document.getElementById("lostForm")
 
 e.preventDefault();
 
+await user()
+
 const item=document.getElementById("lostItem").value;
 
 const file=document.getElementById("lostImage").files[0];
 
 const image=await upload(file);
 
-await supabase
+console.log("User ID:", userID);
+
+const { error } = await supabase
+
 .from("lost table")
 .insert({
-
 item,
-image
-
+image,
+user_id: userID
 });
-
+if(error){ 
+    console.log(error)
+    return;
+}
+await getLostItems()
 alert("Lost Item Added");
 
 e.target.reset();
@@ -180,3 +236,5 @@ await supabase.auth.signOut();
 location.href="index.html";
 
 };
+
+getLostItems();

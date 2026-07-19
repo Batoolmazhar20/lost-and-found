@@ -43,7 +43,7 @@ if (error) {
         document.getElementById("signupFormNew").reset();
 
         // switch to login view
-        alert("Account Created Successfully!");
+      
 window.location.href = "./dashboard.html";
 
     } catch (error) {
